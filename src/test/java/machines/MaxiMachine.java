@@ -61,7 +61,6 @@ public class MaxiMachine {
         SaltySnacks saltySnacks = new SaltySnacks("Peanuts");
         //adding a Salty Snacks Product
         mvm.addStock(saltySnacks, 3);
-        Exception exception = assertThrows( SoftDrinkOutOfStockException.class, () -> mvm.buy(saltySnacks));
         // By product and catch exceptions product not found
         try {
             mvm.buy(saltySnacks);
@@ -73,8 +72,8 @@ public class MaxiMachine {
         } catch (ProductNotFoundException e){
             e.printStackTrace();
         }
-//        assertEquals(0, mvm.getStock(saltySnacks));
-        assertEquals("", exception.getMessage());
+        assertEquals(0, mvm.getSaltySnacks(saltySnacks));
+
     }
 
     @Test
