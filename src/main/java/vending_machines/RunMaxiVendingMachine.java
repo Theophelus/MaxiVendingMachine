@@ -42,7 +42,7 @@ public class RunMaxiVendingMachine {
         System.out.println("Salty Snack(s) available in stock: " + mvm.getSaltySnacks(saltySnacks));
         System.out.println("Soft Drink(s) available in stock: " + mvm.getSoftDrink(softDrinks));
 
-        //get Grand Total of prodects left:
+        //get Grand Total of products left:
         int geandTotal = mvm.getChocolate(chocolate) + mvm.getSoftDrink(softDrinks) + mvm.getSaltySnacks(saltySnacks);
         System.out.println("Grand Total: " + geandTotal);
     }

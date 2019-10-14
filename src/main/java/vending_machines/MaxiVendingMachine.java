@@ -11,84 +11,65 @@ public class MaxiVendingMachine extends VendingMachine{
     private int softDrink;
     private int saltySnacks;
     private int chocolate;
+
+    @Override
+    public void buy(Products products) throws ProductNotFoundException, InvalidProductException {
+        super.buy(products);
+    }
+
     //define a Soft drink buy method
-    public void buy(SoftDrinks softDrinks) throws ProductNotFoundException {
-        if (softDrinks != null){
+    public void buy(SoftDrinks softDrinks) throws ProductNotFoundException{
+
             if (this.softDrink <= 0){
                 throw new SoftDrinkOutOfStockException();
             }else
                 this.softDrink--;
-        }
-
     }
 
-    public void buy(SaltySnacks saltySnacks ) throws ProductNotFoundException{
-        if (saltySnacks != null){
+    public void buy(SaltySnacks saltySnacks ) throws ProductNotFoundException {
+
             if (this.saltySnacks <= 0){
                 throw new SaltyCracksAllEatenException();
             }
             else
                 this.saltySnacks --;
-        }
     }
-    public void buy(Chocolate chocolate) throws ProductNotFoundException {
+    public void buy(Chocolate chocolate) throws ProductNotFoundException{
 
-        if (chocolate !=null){
             if (this.chocolate <= 0){
                 throw new ChocolateAllGoneException();
             }else
                 this.chocolate --;
-        }
     }
 
 
     @Override
-    public void buy(Products products) throws InvalidProductException {
-        throw new InvalidProductException();
+    public void addStock(Products products, int newStock)throws InvalidProductException  {
+       if (products != null){
+           super.addStock(products, newStock);
+       }else
+           throw new InvalidProductException();
     }
-
 
     public void addStock(SoftDrinks softDrinks, int newStock){
 
-        if (softDrinks !=null){
             this.softDrink += newStock;
-        }
-
     }
     public void addStock(SaltySnacks saltySnacks, int newStock){
 
-        if (saltySnacks !=null){
             this.saltySnacks += newStock;
-        }
 
     }
-    public void addStock(Chocolate chocolates, int newStock){
-
-        if (chocolates !=null){
-            this.chocolate += newStock;
-        }
-    }
+    public void addStock(Chocolate chocolates, int newStock){ this.chocolate += newStock;}
 
     public int getChocolate(Chocolate chocolate  ) {
-        if (chocolate instanceof Chocolate) {
             return this.chocolate;
-        }else{
-        return 0;
-        }
     }
     public int getSoftDrink(SoftDrinks softDrinks) {
-        if (softDrinks instanceof SoftDrinks) {
             return this.softDrink;
-        }else{
-            return 0;
-        }
+    }
+    public int getSaltySnacks(SaltySnacks saltySnacks   ) {
+        return this.saltySnacks;
     }
 
-    public int getSaltySnacks(SaltySnacks saltySnacks   ) {
-        if (saltySnacks instanceof SaltySnacks) {
-            return chocolate;
-        }else{
-            return 0;
-        }
-    }
 }

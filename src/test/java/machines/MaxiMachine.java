@@ -1,5 +1,6 @@
 package machines;
 
+import custom_exceptions.ChocolateAllGoneException;
 import custom_exceptions.ProductNotFoundException;
 import custom_exceptions.SoftDrinkOutOfStockException;
 import org.junit.jupiter.api.Test;
@@ -10,9 +11,7 @@ import products.SoftDrinks;
 import vending_machines.MaxiVendingMachine;
 import vending_machines.VendingMachine;
 
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MaxiMachine {
 
@@ -37,22 +36,14 @@ public class MaxiMachine {
 
     }
     @Test
-    public  void addAndBuyChocolate()  {
+    public  void addAndBuyChocolate() throws ProductNotFoundException {
 
         Chocolate chocolate = new Chocolate("Bar One");
         //adding a Chocolate Product
-        mvm.addStock(chocolate, 7);
+        mvm.addStock(chocolate, 6);
         // By product and catch exceptions product not found
-        try {
-            mvm.buy(chocolate);
-            mvm.buy(chocolate);
-            mvm.buy(chocolate);
-        } catch (SoftDrinkOutOfStockException ex){
-            ex.printStackTrace();
-        } catch (ProductNotFoundException e){
-            e.printStackTrace();
-        }
-        assertEquals(4, mvm.getChocolate(chocolate));
+        assertThrows(ChocolateAllGoneException.class, ()-> mvm.buy(chocolate));
+
     }
 
     @Test

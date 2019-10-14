@@ -8,13 +8,12 @@ import products.SoftDrinks;
 
 public class VendingMachine {
     private int chocolateStock;
-    private int saltySanacks;
+    private int saltySnacks;
     private int softDrink;
 
-    public void buy(Products products) throws ProductNotFoundException {
+    public void buy(Products products) throws ProductNotFoundException, InvalidProductException {
 
-
-        if (products instanceof Products) {
+        if (products != null) {
 
             if (products instanceof Chocolate) {
                 if (this.chocolateStock <= 0) {
@@ -23,10 +22,10 @@ public class VendingMachine {
                     this.chocolateStock--;
                 }
             } else if (products instanceof SaltySnacks) {
-                if (this.saltySanacks <= 0) {
+                if (this.saltySnacks <= 0) {
                     throw new SaltyCracksAllEatenException();
                 } else {
-                    this.saltySanacks--;
+                    this.saltySnacks--;
                 }
             } else if (products instanceof SoftDrinks) {
                 if (this.softDrink <= 0) {
@@ -49,7 +48,7 @@ public class VendingMachine {
             this.chocolateStock += newStock;
         }
         if (products instanceof SaltySnacks) {
-            this.saltySanacks += newStock;
+            this.saltySnacks += newStock;
         }
         if (products instanceof SoftDrinks) {
             this.softDrink += newStock;
@@ -57,6 +56,6 @@ public class VendingMachine {
     }
 
     public int getStock() {
-        return this.chocolateStock + this.softDrink + this.saltySanacks;
+        return this.chocolateStock + this.softDrink + this.saltySnacks;
     }
 }
